@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/logo-fv.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b8ffa0db99.js" crossorigin="anonymous"></script>
+    <title>InfoVid</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="img/logo-2.png" alt="">
+        </nav>
+        <div class="nav">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Searcher</a>
+            <a href="#" class="nav-link">News</a>
+            <a href="#" class="nav-link">About us</a>
+        </div>
+    </header>
+    <div class="slide">
+        <h1>InfoVid</h1>
+        <p>El lugar para informarse del COVID</p>
+    </div>
+    <div class="searcher">
+        <h2>Casos por país en inglés</h2>
+        <form id="search-form">
+            <div class="input">
+                <input type="text" class='country-input' placeholder="Buscar casos por país">
+                <button class="fa fa-search"></button>
+            </div>
+            <div class="error-msg"></div>
+        </form>
+        <div class="countries-list">
+            <div class="country-list-details">
+                <h3>Country</h3>
+                <h3>Total Population</h3>
+                <h3>Confirmed</h3>
+                <h3>Deaths</h3>
+                <h3>Location</h3>
+            </div>
+        </div>
+    </div>
+    <script src="app/fetch.js"></script>
+</body>
+</html>
