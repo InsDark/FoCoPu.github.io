@@ -1,8 +1,10 @@
+
 $alt-color: #0199fe;
 $bg-color: #212E36;
 $dark-bg-color: #192229;
 $border-color: #808080;
 $txt-color: #ffffff;
+$red-color: rgb(214, 21, 21);
 $bg-size: 2rem;
 $default-size: 1.5rem;
 $md-size: 1.2rem;
@@ -36,7 +38,7 @@ body{
 }
 
 .nav-axis{
-    color:$txt-color;
+    color: $txt-color;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,57 +109,117 @@ body{
                 color: $alt-color;
                 transition: background-color 0.5s ease;
             }
-            &:first-child{
+            &:nth-child(2){
                 color: $alt-color;
             }
         }
     }
 }
 
-
-main{
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(6rem, 1fr));
-    background-color: $dark-bg-color;
-    padding: 1rem;
+@mixin button-style {
     color: $txt-color;
-    div{
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        padding: 1rem;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        background-color:  $bg-color;
-        border-radius: .5rem;
-        font-size: $sm-size;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+    background-color: $bg-color;
+    cursor: pointer;
+    font-size: $md-size;
+    &:hover{
+        background-color: $txt-color;
+        font-weight: bold;
+        color: $alt-color;
     }
-    .greeting-container{
-        grid-row: span 2;
-        h1{
-            font-size: $default-size;
+}
+
+@mixin input-style {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: $md-size;
+    color: $txt-color;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    outline: none;
+    background-color: $bg-color;
+    &:focus{
+        border: thin solid $alt-color;
+    }
+}
+
+.todo-container{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: $dark-bg-color;
+    #todo-form{
+        background-color: $bg-color;
+        display: flex;
+        padding: 1rem;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 1rem;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 0.5rem;
+        input{
+            @include input-style();
+            background-color: $dark-bg-color;
+            width: 75%;
+        }
+        button{
+            @include button-style();
+            background-color: $dark-bg-color;
+        }
+        div{
+            background-color: $red-color;
+            color: $txt-color;
+            width: 80%;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
         }
     }
-    .time-container{
+    .todo-list{
         display: flex;
-    }
-    .quote-container{
-        grid-row: span 2;
-        padding: .5rem;
-        div{
-            padding: 0 1rem;
-            font-size: $sm-size;
-            margin: 0;
-            p{
-                text-align: justify;
+        flex-wrap: wrap;
+        gap: 1rem;
+        .todo-item{
+            color: $txt-color;
+            background-color: $bg-color;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: $md-size;
+            border-radius: 0.5rem;
+            padding: .5rem 1rem;
+            width: 100%;
+            h4{
+                margin: 0;
+                font-size: $md-size;
+                text-transform:capitalize;
+            }
+            div{
+                i{
+                    cursor: pointer;
+                    padding: .5rem;
+                    color: $border-color;
+                }
+                .fa-trash{
+                    &:hover{
+                        color: $red-color;
+                        background-color: $dark-bg-color;
+                    }
+                }
+                .fa-edit{
+                    &:hover{
+                        color: $alt-color;
+                        background-color: $dark-bg-color;
+                    }
+                }
             }
         }
-    }
-    .tasks-container{
-        display: flex;
     }
 }
 

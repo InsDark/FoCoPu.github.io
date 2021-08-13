@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/logo-fv.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/logo-fv.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b8ffa0db99.js" crossorigin="anonymous"></script>
     <title>FocuPo</title>
@@ -13,42 +13,35 @@
 <body>
     <div class="nav-axis"><i class="fa fa-bars"></i></div>
     <div class="row-nav">
-        <img src="img/logo-fv.png" alt="logo-fv">
+        <img src="../img/logo-fv.png" alt="logo-fv">
         <i class="fa fa-user"></i>
     </div>
     <div class="column-nav">
         <div class="column-nav-links">
-            <a class="nav-link">
+            <a href="../index.html" class="nav-link home">
                 <i class="fa fa-home"></i><span>Home</span>
             </a>
-            <a href="todo/todo.html" class="nav-link">
+            <a class="nav-link todo">
                 <i class="fas fa-tasks"></i><span>Taks</span>
             </a>
-            <a href="news/news.html" class="nav-link">
+            <a href="../news/news.html" class="nav-link news">
                 <i class="fa fa-newspaper"></i><span>News</span>
             </a>
-            <a href="us/about-us.html" class="nav-link">
+            <a href="../us/about-us.html" class="nav-link about-us">
                 <i class="fa fa-users"></i><span>Us</span>
             </a>
         </div>
     </div>
-    <main>
-        <div class="greeting-container">
-            <h1>Hey there! Welcome to InfoVid</h1>
-            <p>A place to be productive and informed</p>
+    <div class="todo-container">
+        <form id="todo-form">
+            <input class='todo-title' type="text" placeholder="Something to do?">
+            <button>Add Task</button>
+        </form>
+        <div class="todo-list">
+
         </div>
-            <div class="time-container">
-                <h2 class="clock"></h2>
-            </div>
-            <div class="quote-container">
-                <h3>Quote of The Day</h3>
-                <div class="quote"></div>
-            </div>
-            <div class='tasks-container'>
-                <h4>You have 5 taks to do</h4>
-            </div>
-    </main>
-    <script src="app/main.js"></script>
-    <script src="app/menu.js"></script>
+    </div>
+    <script src="../app/menu.js"></script> 
+    <script src="../app/todo.js"></script> 
 </body>
 </html>
