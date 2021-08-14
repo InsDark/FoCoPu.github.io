@@ -8,102 +8,25 @@ $default-size: 1.5rem;
 $md-size: 1.2rem;
 $sm-size: 1rem;
 
-*{
-    box-sizing: border-box;
-}
-
-body{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: $bg-color;
-    display: grid;
-    min-height: 100vh;
-    grid-template-columns: 10rem 1fr;
-    grid-template-rows: 5rem 1fr;
-}
-
-.nav-axis{
-    color:$txt-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-right: thin solid $border-color;
-    border-bottom: thin solid $border-color;
-    cursor: pointer;
-    i{
-        font-size: $default-size;
-    }
-    &:hover{
-        background-color: $dark-bg-color;
-        color: $alt-color;
-        transition: background-color .5s ease;
-    }
-}
-
-.row-nav{
-    display: flex;
-    border-bottom: thin solid $border-color;
-    justify-content: space-evenly;
-    background-color: $bg-color;
-    align-items: center;
-    img{
-        width: auto;
-        height: 100%;
-    }
-    i{
-        color: $txt-color;
-        font-size: $bg-size;
-    }
-}
-
 .column-nav{    
-    background-color: $bg-color;
-    display: flex;
-    flex-direction: column;
-    color: $txt-color;
-    align-items: center;
-    font-size: $default-size;
-    border-right: thin solid $border-color;
     .column-nav-links{
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
         .nav-link{
-            cursor: pointer;
-            width: 100%;
-            text-decoration: none;
-            color: $txt-color;
-            height: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            span{
-                display: flex;
-                font-size: 0rem;
-                margin-left: .5rem;       
-                transition: all .5s ease;    
-            }
-            .active{
-                font-size: 1.3rem;
-                margin-left: .5rem;  
-                transition: all .5s ease;   
+            &:first-child{
+                color: $txt-color;
             }
             &:hover{
                 background-color: $dark-bg-color;
                 color: $alt-color;
                 transition: background-color 0.5s ease;
             }
-            &:nth-child(4){
+            &:nth-child(5){
                 color: $alt-color;
             }
         }
     }
 }
 
-
-main{
+.about-main{
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
@@ -163,72 +86,8 @@ main{
     }
 }
 
-@mixin button-style {
-    color: $txt-color;
-    border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-family: 'Courier New', Courier, monospace;
-    outline: none;
-    background-color: $bg-color;
-    cursor: pointer;
-    font-size: $md-size;
-    &:hover{
-        background-color: $txt-color;
-        font-weight: bold;
-        color: $alt-color;
-    }
-}
-
-@mixin input-style {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: $md-size;
-    color: $txt-color;
-    border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    outline: none;
-    background-color: $bg-color;
-    &:focus{
-        border: thin solid $alt-color;
-    }
-}
-
 @media (max-width: 780px) {
-    body {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 5rem 2fr 5rem;
-    }
-    .nav-axis{
-        display: none;
-    }
-    .column-nav{
-        background-color: $bg-color;
-        display: flex;
-        flex-direction: column;
-        color: $txt-color;
-        font-size: $sm-size;
-        order: 1;
-        border: none;
-        .column-nav-links{
-            display: flex;
-            flex-direction: row;
-            .nav-link{
-                display: flex;
-                flex-direction: column;
-                span{
-                    font-size: $sm-size;
-                    margin-left: 0;       
-                }
-                .active{
-                    font-size: $sm-size;
-                    margin-left: 0;       
-                }
-            }
-        }
-    }
-    main{
+    .about-main{
         display: flex;
         gap: 1rem;
         flex-direction: column;

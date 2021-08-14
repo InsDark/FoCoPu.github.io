@@ -1,0 +1,129 @@
+$alt-color: rgb(1, 153, 254);
+$bg-color: #212E36;
+$dark-bg-color: #192229;
+$border-color: #808080;
+$txt-color: #ffffff;
+$bg-size: 2rem;
+$error-color: hsl(0, 84%, 58%);
+$default-size: 1.5rem;
+$md-size: 1.2rem;
+$sm-size: 1rem;
+
+.column-nav{
+    .column-nav-links{
+        .nav-link{
+            &:nth-child(1){
+                color: $txt-color;
+            }
+            &:nth-child(3){
+                color: $alt-color;
+            }
+        }
+    }
+}
+
+@mixin input-style {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: $md-size;
+    color: $txt-color;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    outline: none;
+    background-color: $bg-color;
+    &:focus{
+        border: thin solid $alt-color;
+    }
+}
+
+@mixin button-style {
+    color: $txt-color;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+    background-color: $bg-color;
+    cursor: pointer;
+    font-size: $md-size;
+    &:hover{
+        background-color: $txt-color;
+        font-weight: bold;
+        color: $alt-color;
+    }
+}
+.virus-main{
+    padding: 1rem;
+    background-color: $dark-bg-color;
+    #main-form{
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 5px;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        .getData{
+            width: 80%;
+            @include input-style();
+        }
+        button{
+            @include button-style();
+        }
+        .error-msg{
+            color: #fff;
+            background-color: $error-color;
+            border-radius: .5rem;
+            text-align: center;
+            width: 100%;
+            animation: move .5s 1s ;
+            h4{
+                margin: 1rem;
+            }
+            @keyframes move {
+                50%{
+                    transform: translateY(-400%);
+                }
+                100%{
+                    transform: translateY(-800%);
+                }
+            }
+        }
+    }
+    .country-details{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        // grid-template-rows: repeat(auto-fill, minmax(15rem, 1fr));
+        color: $txt-color;
+        gap: 1rem;
+        div {
+            border-radius: 5px;
+            background-color: $bg-color;
+            padding: 1rem;
+            h2{
+                text-align: center;
+                margin: 0 0 .5rem 0;
+                font-size: $default-size;
+            }
+            h3{
+                margin: .5rem;
+            }
+            img{
+                border-radius: 5px;
+                width: 100%;
+                margin: 0 auto;
+                height: auto;
+            }
+        }
+        .cases-graph{
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            canvas{
+                width: 100%;
+                height: auto;
+                background-color: $dark-bg-color;
+                border-radius: .5rem;
+            }
+        }
+    }
+}
