@@ -91,7 +91,7 @@ $sm-size: 1rem;
     }
     .country-details{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
         // grid-template-rows: repeat(auto-fill, minmax(15rem, 1fr));
         color: $txt-color;
         gap: 1rem;
@@ -99,6 +99,9 @@ $sm-size: 1rem;
             border-radius: 5px;
             background-color: $bg-color;
             padding: 1rem;
+        }
+        .country-facts{
+            width: 100%;
             h2{
                 text-align: center;
                 margin: 0 0 .5rem 0;
@@ -109,7 +112,7 @@ $sm-size: 1rem;
             }
             img{
                 border-radius: 5px;
-                width: 100%;
+                width: inherit;
                 margin: 0 auto;
                 height: auto;
             }
@@ -123,6 +126,24 @@ $sm-size: 1rem;
                 height: auto;
                 background-color: $dark-bg-color;
                 border-radius: .5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .virus-main{
+        .country-details{
+            .country-facts{
+                grid-column: span 2;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                img{
+                    width: 50%;
+                    height: auto;
+                }
             }
         }
     }

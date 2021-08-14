@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="../img/logo-fv.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/re-logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b8ffa0db99.js" crossorigin="anonymous"></script>
     <title>FocuPo</title>
@@ -14,7 +14,7 @@
 <body>
     <div class="nav-axis"><i class="fa fa-bars"></i></div>
     <div class="row-nav">
-        <img src="../img/logo-fv.png" alt="logo-fv">
+        <img src="../img/re-logo.png" alt="logo-fv">
         <i class="fa fa-user"></i>
     </div>
     <div class="column-nav">
@@ -32,13 +32,14 @@
                 <i class="fa fa-newspaper"></i><span>News</span>
             </a>
             <a class="nav-link">
-                <i class="fa fa-users"></i><span>Us</span>
+                <i class="fa fa-users"></i><span>About</span>
             </a>
         </div>
     </div>
     <main class="about-main">
         <div class="about-us">
-            <h1>About Us</h1>
+            <h1>About <i>FOCOPU</i></h1>
+            <p>FOCOPU is a personal project developed by me... This project try to help people to be a little more productive and informed</p>
         </div>
         <div class="media-section">
             <h2>You can follow us on</h2>
@@ -50,15 +51,18 @@
             </div>
         </div>
         <div class="api-section">
-            <h2>Api Used</h2>
+            <h2>Resources Used</h2>
             <div class="apis">
-                <a href="https://quotes.rest/" target="_blank">Quotes Rest</a>
-                <a href="https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/newscatcher/" target="_blank">Newscatcher</a>
+                <a href="https://quotes.rest/" target="_blank">Quotes Rest API</a>
+                <a href="https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/newscatcher/" target="_blank">Newscatcher API</a>
+                <a href="https://restcountries.eu/" target="_blank">Rest Countries API</a>
+                <a href="https://www.chartjs.org/" target="_blank">Chart.js Library</a>
+                <a href="https://rapidapi.com/Gramzivi/api/covid-19-data/" target="_blank">COVID-19 Data API</a>
             </div>
         </div>
         <div class="footer">
             <div>
-                <img src="../img/logo-2.png" alt="">
+                <img src="../img/logo-footer.png" alt="">
             </div>
             <h3 id='copyright'></h3>
         </div>
@@ -66,7 +70,7 @@
     <script>
         let thisYear = new Date()
         let currentYear = document.querySelector('#copyright')
-        currentYear.innerHTML = `&copy 2021 - ${thisYear.getFullYear()}`
+        currentYear.innerHTML = `All rights reversed &copy 2021 - ${thisYear.getFullYear()}`
     </script>
     <script src="../app/menu.js"></script>
 </body>

@@ -15,7 +15,7 @@ const clock = () => {
 const getQuote = () => {
     let quote = document.querySelector('.quote')
 
-    fetch('http://quotes.rest/qod')
+    fetch('https://quotes.rest/qod')
     .then(response => response.json())
     .then(data => {
         const authorQuoute = data.contents.quotes[0].author

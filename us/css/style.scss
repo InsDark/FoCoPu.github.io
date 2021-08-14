@@ -29,7 +29,7 @@ $sm-size: 1rem;
 .about-main{
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(auto, 1fr));
     background-color: $dark-bg-color;
     padding: 1rem;
@@ -49,12 +49,13 @@ $sm-size: 1rem;
             margin: 0;
         }
     }
-    .footer{
-        grid-column: span 3;
-    }
     .about-us{
-        grid-column: span 2;
-        grid-row: span 2;
+        h1{
+            margin: 0;
+        }
+        p{
+            margin: 0;
+        }
     }
     .media-section{
         display: flex;
@@ -67,7 +68,7 @@ $sm-size: 1rem;
             font-size: $bg-size;
             &:hover{
                 color: $alt-color;
-
+                
             }
         }
     }
@@ -80,19 +81,39 @@ $sm-size: 1rem;
             font-size: $sm-size;
             &:hover{
                 color: $alt-color;
-
+                
             }
         }
     }
+    .footer{
+        grid-column: span 3;
+    }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 840px) {
     .about-main{
-        display: flex;
+        display: grid;
         gap: 1rem;
-        flex-direction: column;
         background-color: $dark-bg-color;
         padding: 1rem;
         color: $txt-color;
+        .about-us{
+            grid-column: span 2;
+            h1{
+                margin: 0;
+            }
+            p{
+                margin: 0;
+            }
+        }
+        .api-section{
+            grid-column: span 2;
+        }
+        .media-section{
+            grid-column: span 2; 
+        }
+        .footer{
+            grid-column: span 2;
+        }
     }
 }

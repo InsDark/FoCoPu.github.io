@@ -1,6 +1,6 @@
-$alt-color: #0199fe;
+$alt-color: rgb(1, 153, 254);
 $bg-color: #212E36;
-$dark-bg-color: #192229;
+$dark-bg-color: rgb(25, 34, 41);
 $border-color: #808080;
 $txt-color: #ffffff;
 $bg-size: 2rem;
@@ -133,7 +133,13 @@ body{
         text-align: center;
         background-color:  $bg-color;
         border-radius: .5rem;
-        font-size: $sm-size;
+        font-size: $md-size;
+        a{
+            color: $txt-color;
+            &:hover{
+                color: $alt-color;
+            }
+        }
     }
     .greeting-container{
         grid-row: span 2;
@@ -143,6 +149,7 @@ body{
     }
     .time-container{
         display: flex;
+        font-size: $bg-size;
     }
     .quote-container{
         grid-row: span 2;
