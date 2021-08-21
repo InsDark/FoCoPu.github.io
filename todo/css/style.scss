@@ -93,44 +93,55 @@ $sm-size: 1rem;
             border-radius: 0.5rem;
         }
     }
-    .todo-list{
+    .todo-sections{
+        justify-content: space-around;
         display: flex;
+        gap: .5rem;
         flex-wrap: wrap;
-        gap: 1rem;
-        .todo-item{
-            color: $txt-color;
+        width: 100%;
+        div{
             background-color: $bg-color;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: $md-size;
+            padding: .5rem .5rem .5rem .5rem;
             border-radius: 0.5rem;
-            padding: 1rem 1rem;
-            width: 100%;
-            h4{
-                margin: 0;
-                font-size: $md-size;
-                text-transform:capitalize;
+            width: 23.9rem;
+            align-items: flex-start;
+            h2{
+                width: 100%;    
+                color: $txt-color;
+                text-align: center;
             }
             div{
-                i{
-                    cursor: pointer;
-                    padding: .5rem;
-                    color: $border-color;
-                }
-                .fa-trash{
-                    &:hover{
-                        color: $red-color;
-                        background-color: $dark-bg-color;
+                width: 100%;
+                background-color: $dark-bg-color;
+                .todo-item{
+                    cursor: grab;
+                    margin: .5rem 0;
+                    display: flex;
+                    flex-direction: row;
+                    color: $txt-color;
+                    background-color: $bg-color;
+                    justify-content: space-between;
+                    font-size: $md-size;
+                    height: 4rem;
+                    border-radius: 0.5rem;
+                    padding: 1rem 1rem;
+                    width: 100%;
+                    h4{
+                        margin: 0;
+                        font-size: $md-size;
+                        text-transform:capitalize;
                     }
-                }
-                .fa-edit{
-                    &:hover{
-                        color: $alt-color;
-                        background-color: $dark-bg-color;
+                    .fa-trash{
+                        cursor: pointer;
+                        padding: .5rem;
+                        color: $border-color;
+                        &:hover{
+                            color: $red-color;
+                            background-color: $dark-bg-color;
+                        }
                     }
                 }
             }
-        }
+        }       
     }
 }

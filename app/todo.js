@@ -1,4 +1,4 @@
-class FORM {
+class TODO {
     constructor (title, id) {
         this.title = title;
         this.id = id;
@@ -6,21 +6,19 @@ class FORM {
     
     getTodo () {
         let todoForm = document.querySelector('#todo-form')   
-        let lastId = JSON.parse(localStorage.getItem('todoList'))
-        let id = lastId[lastId.length -1].id
         todoForm.addEventListener('submit', e => {
             e.preventDefault();
-            id++;
-            let todoValue = document.querySelector('.todo-title').value;
+            const id = new Date().getTime()
+            const todoValue = document.querySelector('.todo-title').value;
             if (!todoValue.trim()) {
                 return this.errorTodo('TITLE CAN NOT BE BLANK NULL OR EMPTY');
             }
             todoForm.reset();
 
-            const todo = new FORM(todoValue, id);
+            const todo = new TODO(todoValue, id);
             this.printTodo(todo);
-            allTodos.push(todo);
-            localStorage.setItem('todoList', JSON.stringify(allTodos));
+            TODO_LIST.push(todo)
+            localStorage.setItem(TODO_LIST_CLASS, JSON.stringify(TODO_LIST));
         })
     }
 
@@ -34,70 +32,173 @@ class FORM {
         }, 2000);
     }
 
-    printTodo (todo) {
+    printTodo (todo, classList = `.${TODO_LIST_CLASS}` ) {
         let todoItem = document.createElement('div')
 
         todoItem.classList.add('todo-item')
+        todoItem.setAttribute('draggable', true)
         todoItem.innerHTML = `
                                 <h4 value='${todo.id}'>${todo.title}</h4>
-                                <div>
-                                    <i class='fa fa-edit'></i>
-                                    <i class='fas fa-trash'></i>
-                                </div>`
-        
-        let todoList = document.querySelector('.todo-list')
+                                <i class='fas fa-trash'></i>`
+    
+        let todoList = document.querySelector(classList)
         todoList.insertBefore(todoItem, todoList.children[0])
 
     }
 
     removeTodo () {
-        let todosContainer = document.querySelector('.todo-list')
+        let todosContainer = document.querySelector('.todo-sections')
         todosContainer.addEventListener('click', e => {
             e.stopPropagation()
-            let elementId = e.target.parentElement.parentElement.children[0].getAttribute('value')
+            let elementId = e.target.parentElement.children[0].getAttribute('value')
             if (e.target.classList.contains('fa-trash')) {
-                e.target.parentElement.parentElement.remove()
-                allTodos.forEach(todo => {
-                    if (todo.id === parseInt(elementId)) {
-                        let i = allTodos.indexOf(todo)
-                        allTodos.splice(i, 1)
-                        localStorage.setItem('todoList', JSON.stringify(allTodos));
-                    }
-                })
+                if (e.target.parentElement.parentElement.classList.contains('todo-list')) {
+                    e.target.parentElement.remove()
+                    TODO_LIST.forEach(todo => {
+                        if (parseInt(todo.id) === parseInt(elementId)) {
+                            let i = TODO_LIST.indexOf(todo)
+                            TODO_LIST.splice(i, 1)
+                            localStorage.setItem('todo-list', JSON.stringify(TODO_LIST));
+                        }
+                    })  
+                } else if (e.target.parentElement.parentElement.classList.contains('doing-list')) {
+                    e.target.parentElement.remove()
+                    DOING_LIST.forEach(todo => {
+                        if (parseInt(todo.id) === parseInt(elementId)) {
+                            let i = DOING_LIST.indexOf(todo)
+                            DOING_LIST.splice(i, 1)
+                            localStorage.setItem('doing-list', JSON.stringify(DOING_LIST));
+                        }
+                    })
+                    
+                } else {
+                    e.target.parentElement.remove()
+                    DONE_LIST.forEach(todo => {
+                        if (parseInt(todo.id) === parseInt(elementId)) {
+                            let i = DONE_LIST.indexOf(todo)
+                            DONE_LIST.splice(i, 1)
+                            localStorage.setItem('done-list', JSON.stringify(DONE_LIST));
+                        }
+                    })
+                    
+                }
             }
         })
     }
 
     renderTodoList() {
-        let todoList = JSON.parse(localStorage.getItem('todoList'))
-        if (!todoList) {
-            return false
+        this.removeTodo()
+        this.draggableTodos()
+
+        const todoList = JSON.parse(localStorage.getItem(TODO_LIST_CLASS));
+        if (!todoList){
+            return null
+        } else {
+            todoList.forEach(todo => this.printTodo(todo, `.${TODO_LIST_CLASS}`))
+            todoList.forEach(todo => {TODO_LIST.push(todo)})
         }
-        todoList.forEach(todo => this.printTodo(todo))
+
+        const doingList = JSON.parse(localStorage.getItem(DOING_LIST_CLASS));
+        if (!doingList){
+            return null
+        } else {
+            doingList.forEach(todo => this.printTodo(todo, `.${DOING_LIST_CLASS}`))
+            doingList.forEach(todo => DOING_LIST.push(todo))
+        }
+    
+        const doneList = JSON.parse(localStorage.getItem(DONE_LIST_CLASS));
+        if (!doneList){
+            return null
+        } else {
+            doneList.forEach(todo => this.printTodo(todo, `.${DONE_LIST_CLASS}`))
+            doneList.forEach(todo => DONE_LIST.push(todo))
+        }
+    
     }
 
-    getAllTodos() {
-        let todoList = JSON.parse(localStorage.getItem('todoList'))
+    draggableTodos () {
+        const dragzones = document.querySelectorAll('.dragzone')
+        let draggedItem;
 
-        if (!todoList || todoList.length === 0) {
-            let defaultTodo = {
-                title: 'Default Sample TODO Item',
-                id: 0
-            }
-            allTodos.push(defaultTodo)
-            localStorage.setItem('todoList', JSON.stringify(allTodos))
-            return this.printTodo(defaultTodo)
-        }
-        todoList.forEach(todo => allTodos.push(todo))
+        dragzones.forEach(dragzone =>{
+
+            dragzone.addEventListener('dragstart', e => {
+                draggedItem = e.target
+            })
+
+            dragzone.addEventListener('drop', e => {
+                e.preventDefault()
+                e.target.style.border = 'none'
+                dragzone.appendChild(draggedItem)
+                filterTodo()
+            })
+
+            dragzone.addEventListener('dragenter', e => {
+                if(e.target.classList.contains('dragzone')){
+                    e.target.style.border = '1px solid white'
+                }
+            })
+
+            dragzone.addEventListener('dragleave', e => {
+                e.target.style.border = 'none'
+            })
+
+            dragzone.addEventListener('dragover', e => {
+                e.preventDefault()
+            })
+        })
     }
 }
 
-let allTodos = []
+let TODO_LIST = []
+let DOING_LIST = []
+let DONE_LIST = []
+
+const TODO_LIST_CLASS = 'todo-list'
+const DOING_LIST_CLASS  = 'doing-list'
+const DONE_LIST_CLASS = 'done-list'
 
 document.addEventListener('DOMContentLoaded', () => {
-    const view = new FORM()
+    const view = new TODO()
     view.renderTodoList()
-    view.getAllTodos()
     view.getTodo()
-    view.removeTodo()
 })
+
+const filterTodo = () => {
+    const todoList = document.querySelector('.todo-list').children
+    TODO_LIST = []
+    localStorage.setItem(TODO_LIST_CLASS, JSON.stringify(TODO_LIST))
+    Array.from(todoList).forEach(todo => {
+        let todoTxt = todo.children[0].textContent
+        let todoId = todo.children[0].getAttribute('value')
+        let newTodo = new TODO(todoTxt, todoId)
+        TODO_LIST.push(newTodo)
+        localStorage.setItem(TODO_LIST_CLASS, JSON.stringify(TODO_LIST))
+    })
+
+
+    const doingList = document.querySelector('.doing-list').children
+    DOING_LIST =[]
+    localStorage.setItem(DOING_LIST_CLASS, JSON.stringify(DOING_LIST))
+    Array.from(doingList).forEach(todo => {
+        let todoTxt = todo.children[0].textContent
+        let todoId = todo.children[0].getAttribute('value')
+        let newTodo = new TODO(todoTxt, todoId)
+        DOING_LIST.push(newTodo)
+        localStorage.setItem(DOING_LIST_CLASS, JSON.stringify(DOING_LIST))
+    })
+
+
+
+    const doneList = document.querySelector('.done-list').children
+    DONE_LIST = []
+    localStorage.setItem(DONE_LIST_CLASS, JSON.stringify(DONE_LIST))
+    Array.from(doneList).forEach(todo => {
+        let todoTxt = todo.children[0].textContent
+        let todoId = todo.children[0].getAttribute('value')
+        let newTodo = new TODO(todoTxt, todoId)
+        DONE_LIST.push(newTodo)
+        localStorage.setItem(DONE_LIST_CLASS, JSON.stringify(DONE_LIST))
+    })
+
+}
