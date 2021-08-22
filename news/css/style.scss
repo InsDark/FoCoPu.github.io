@@ -60,17 +60,20 @@ $sm-size: 1rem;
 .news-container{
     padding: 1rem;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
     background-color: $dark-bg-color;
     gap: 1rem;
-    .filter-news{
+    .form-container {
+        width: inherit;
+        flex-wrap: wrap;
+        gap: 1rem;
+        display: flex;
+        justify-content: space-around;
         #filter-form{
             display: flex;
-            justify-content: center;
             gap: 1rem;
-            flex-wrap: wrap;
             input{
                 font-family: 'Courier New', Courier, monospace;
                 font-size: $md-size;
@@ -88,10 +91,10 @@ $sm-size: 1rem;
                 @include button-style();
             }
         }
-    }
-    .filter-articles{
-        button{
-            @include button-style();
+        .filter-articles{
+            button{
+                @include button-style();
+            }
         }
     }
     #articles-list{
@@ -103,15 +106,51 @@ $sm-size: 1rem;
             padding: 1rem;
             color: $txt-color;
             border-radius: 5px;
+            .header{
+                align-items: center;
+                display: flex;
+                justify-content: space-between;
+                a{
+                    font-size: $md-size;
+                    color: $txt-color;
+                    &:hover{
+                        color: $alt-color;
+                    }
+                }
+                i{
+                    cursor: pointer;
+                    color: $txt-color;
+                    border: none;
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    outline: none;
+                    background-color: $bg-color;
+                    cursor: pointer;
+                    font-size: $md-size;
+                    &:hover{
+                        background-color: $txt-color;
+                        font-weight: bold;
+                        color: $alt-color;
+                    }
+                    &::before {
+                        margin: 0 .5rem 0 0;
+                    }
+                }
+                .false {
+                    &::after {
+                        content: "Pin News"
+                    }
+                }
+                .true {
+                    background-color: $alt-color;
+                    color: $txt-color;
+                    &::after {
+                        content: "Article Pinned";
+                    }
+                }
+            }
             p{
                 text-align: justify;
-            }
-            a{
-                font-size: $md-size;
-                color: $txt-color;
-                &:hover{
-                    color: $alt-color;
-                }
             }
         }
     }
