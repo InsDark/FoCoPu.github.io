@@ -8,6 +8,37 @@ $default-size: 1.5rem;
 $md-size: 1.2rem;
 $sm-size: 1rem;
 
+@mixin button-style {
+    color: $txt-color;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+    background-color: $bg-color;
+    cursor: pointer;
+    font-size: $md-size;
+    &:hover{
+        background-color: $txt-color;
+        font-weight: bold;
+        color: $alt-color;
+    }
+}
+
+@mixin input-style {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: $md-size;
+    color: $txt-color;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    outline: none;
+    background-color: $bg-color;
+    &:focus{
+        border: thin solid $alt-color;
+    }
+}
+
 *{
     box-sizing: border-box;
 }
@@ -32,6 +63,50 @@ body{
     &::-webkit-scrollbar-thumb {
         background: $alt-color;
         border-radius: 10px;
+    }
+}
+
+#sesion-form{
+    position: absolute;
+    color: $txt-color;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bg-color;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    form{
+        background-color: $dark-bg-color;
+        border-radius: .5rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        h2{
+            margin: 0rem;
+            text-align: center;
+        }
+        .form-container{
+            display: flex;
+            width: 100%;
+            position: relative;
+            gap: 1rem;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: space-between;
+            label{
+            }
+            input{
+                @include input-style();
+            }
+        }
+        button{
+            @include button-style();
+        }
+    }
+    .hide{
+        display: none;
     }
 }
 

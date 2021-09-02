@@ -11,6 +11,34 @@
     <title>FoCoPu</title>
 </head>
 <body>
+    <div id='sesion-form'>
+        <form id='login'>
+            <h2>Login Form</h2>
+            <div class='form-container'>
+                <label>Type your username </label>
+                <input required type="text" id="username-login">
+            </div>
+            <div class='form-container'>
+                <label>Type your password</label>
+                <input required type="password" id="password-login">
+            </div>
+            <button>Sign In</button>
+        </form>
+        <form id='register'>
+            <h2>Register Form</h2>
+            <div class='form-container'>
+                <label>Write your username</label
+                ><input required type="text" id="username-register">
+            </div>  <div class='form-container'>
+                <label>Write your password</label>
+                <input required type="password" id="password-register">
+            </div>
+            <div class='form-container'>
+                <label>Retype you password</label>
+                <input required type="password" id="password-check-register">
+            </div>
+            <button>Sign Up</button>
+    </div>
     <div class="nav-axis"><i class="fa fa-bars"></i></div>
     <div class="row-nav">
         <img src="img/re-logo.png" alt="logo-fv">
@@ -51,10 +79,8 @@
                 <h4>You have 5 taks to complete</h4>
                 <a href="todo/todo.html">Go to work</a>
             </div>
-                <!-- <div class='pined-news-container'>
-                    <h4>You have 5 taks to do</h4>
-                </div> -->
-    </main>
+            </main>
+            <script src="app/form.js"></script>
     <script src="app/main.js"></script>
     <script src="app/menu.js"></script>
 </body>
