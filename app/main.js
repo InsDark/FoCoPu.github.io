@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let getTIme = setInterval(clock, 2000)
     clock()
     getQuote()
+    currentTodo()
 })
 
 const clock = () => {
@@ -24,4 +25,10 @@ const getQuote = () => {
         quote.innerHTML = `<h4>${authorQuoute}</h4>
                             <p>${getQuote}</p>`
     })
+}
+
+const currentTodo = () => {
+    const todoContainer = document.querySelector('.tasks-container h4')
+    const todoList = JSON.parse(localStorage.getItem('todo-list'))  
+    todoContainer.innerHTML = `You have ${todoList.length} tasks to complete`
 }

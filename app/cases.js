@@ -27,29 +27,15 @@ const fetchCases = (value) => {
     .then(mainData => {
         let countryName = document.querySelector('.country-name')
         countryName.innerHTML = mainData[0].country
+
+        let countryImg = document.querySelector('.country-img')
+        countryImg.setAttribute('src', `https://flagcdn.com/${mainData[0].code.toLowerCase()}.svg`)
         
-        fetchInfo(mainData[0].code)
         renderGraph(mainData[0])
     })
     .catch(err => {
         showError('Please enter a correct country name')
     });
-}
-
-
-const fetchInfo = (code) => {
-    let url = `https://restcountries.eu/rest/v2/alpha/${code}`
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        let countryCapital = document.querySelector('.country-capital')
-        countryCapital.innerHTML = `Capital: ${data.capital}`
-        let countryPopulation = document.querySelector('.country-population')
-        countryPopulation.innerHTML = `Population: ${data.population.toLocaleString()}`
-        let countryImg = document.querySelector('.country-img')
-        countryImg.setAttribute('src', `${data.flag}`)
-    })
-    .catch(err => console.error(err));
 }
 
 const renderGraph = (newData) => {

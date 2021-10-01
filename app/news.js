@@ -96,9 +96,6 @@ newsContainer.addEventListener('click', (e) => {
 })
 
 
-const savePinnedNews = () => {
-
-}
 const renderPinnedArticles = () => {
     let pinnedArticles = JSON.parse(localStorage.getItem('pinedNews'))
     if (!pinnedArticles) {
