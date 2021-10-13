@@ -149,8 +149,18 @@ $sm-size: 1rem;
                     }
                 }
             }
-            p{
-                text-align: justify;
+            .content{
+                display: flex;
+                gap: 1rem;
+                padding: 1rem;
+                img{
+                    width: 50%;
+                    height: auto;
+                    border-radius: 0.5rem;
+                }
+                p{
+                    text-align: justify;
+                }
             }
         }
     }

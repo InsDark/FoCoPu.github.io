@@ -20,19 +20,19 @@ class ARTICLE {
     }
 }
 
-
 const getNews = (topic) => {
-    fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${topic}&lang=en&sort_by=relevancy&page=1&media=True`, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-key": "42f9f0d4cfmsh41f38bd0b9c3cddp183322jsnbf52e97e9421",
-            "x-rapidapi-host": "newscatcher.p.rapidapi.com"
-        }
+    fetch(`https://newscatcher.p.rapidapi.com/v1/search?q=${topic}&lang=en&sort_by=relevancy&sources=bbc.com,cbsnews.com,theguardian.com,nytimes.com,cnn.com,wsj.com&page=1&media=True`, {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "newscatcher.p.rapidapi.com",
+		"x-rapidapi-key": "42f9f0d4cfmsh41f38bd0b9c3cddp183322jsnbf52e97e9421"
+	}
     })
     .then(response => response.json())
     .then(data => {
         let articles = data.articles
         articles.forEach(article => printNews(article));
+        console.log(data)
     })
     .catch(err => {
         console.error(err);
@@ -45,7 +45,10 @@ const printNews =  (article) => {
     if (!article.status) {
         article.status = false
     }
-
+    if (!article.summary) {
+        return false
+    }
+    console.log(article.media)
     let newsContainer = document.querySelector('#articles-list')
     let newNews = document.createElement('article')
     newNews.setAttribute('value', article._id)
@@ -53,13 +56,15 @@ const printNews =  (article) => {
                             <a href="${article.link}" target="_blank">${article.title}</a>
                             <i class='fa fa-thumbtack ${article.status}'></i>
                         </div>
-                        <p>${article.summary}</p>`
+                        <div class='content'>
+                            <img class='news-media' src='${article.media}' alt='news-img'>
+                            <p>${article.summary}</p>
+                        </div>`
     newsContainer.insertBefore(newNews, newsContainer.children[0])
 
     const newArticle = new ARTICLE(article.title, article.link, article.summary, article._id, article.status)
     pinedNews.push(newArticle)
 
-    console.log(pinedNews)
 } 
 
 const clearNews = document.querySelector('.clear-articles')
@@ -68,7 +73,6 @@ const newsContainer = document.querySelector('#articles-list')
 clearNews.addEventListener('click', () =>{
     newsContainer.innerHTML = ''
 })
-
 
 newsContainer.addEventListener('click', (e) => {
     e.preventDefault();
@@ -90,11 +94,9 @@ newsContainer.addEventListener('click', (e) => {
             return article.status === true
         })
 
-
         localStorage.setItem('pinedNews', JSON.stringify(found))
     }
 })
-
 
 const renderPinnedArticles = () => {
     let pinnedArticles = JSON.parse(localStorage.getItem('pinedNews'))
