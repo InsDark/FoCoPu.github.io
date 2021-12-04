@@ -11,12 +11,13 @@ form.addEventListener('submit',(e) => {
 })
 
 class ARTICLE {
-    constructor (title, link, summary, id, status) {
+    constructor (title, link, summary, id, status, media) {
         this.title = title,
         this.link = link,
         this.summary = summary,
         this._id = id
         this.status = status
+        this.media = media
     }
 }
 
@@ -32,7 +33,6 @@ const getNews = (topic) => {
     .then(data => {
         let articles = data.articles
         articles.forEach(article => printNews(article));
-        console.log(data)
     })
     .catch(err => {
         console.error(err);
@@ -48,7 +48,6 @@ const printNews =  (article) => {
     if (!article.summary) {
         return false
     }
-    console.log(article.media)
     let newsContainer = document.querySelector('#articles-list')
     let newNews = document.createElement('article')
     newNews.setAttribute('value', article._id)
@@ -62,7 +61,7 @@ const printNews =  (article) => {
                         </div>`
     newsContainer.insertBefore(newNews, newsContainer.children[0])
 
-    const newArticle = new ARTICLE(article.title, article.link, article.summary, article._id, article.status)
+    const newArticle = new ARTICLE(article.title, article.link, article.summary, article._id, article.status, article.media)
     pinedNews.push(newArticle)
 
 } 

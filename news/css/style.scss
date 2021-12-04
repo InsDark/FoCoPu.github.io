@@ -165,3 +165,15 @@ $sm-size: 1rem;
         }
     }
 }
+
+@media (max-width: 768px) {
+    #articles-list{
+        .content{
+            flex-wrap: wrap;
+            img{
+                margin: 0 auto;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+}
